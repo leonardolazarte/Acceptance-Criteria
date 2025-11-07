@@ -27,7 +27,6 @@ Scenario: E2: Sin reportes
     Examples: INPUTS:
         | reportes_realizados |
         | 0                   |
-        | 0                   |
 
     Examples: OUTPUTS:
         | mensaje_sistema                        |
