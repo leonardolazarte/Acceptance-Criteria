@@ -8,7 +8,28 @@ Scenario: E1: Evidencia aceptada
     When envía el reporte
     Then el sistema guarda los archivos como parte del registro.
 
+    Examples: INPUTS:
+        | tipo_evidencia | formato   |
+        | Foto           | JPG       |
+        | Video          | MP4       |
+    
+    Examples: OUTPUTS:
+        | estado_evidencia |
+        | Guardada         |
+        | Guardada         |
+
+
 Scenario: E2: Evidencia no compatible
     Given que un ciudadano adjunta un archivo de formato no permitido
     When intenta enviarlo
     Then la aplicación muestra un mensaje de error indicando los formatos válidos.
+
+    Examples: INPUTS:
+        | tipo_evidencia | formato   |
+        | Documento      | PDF       |
+        | Audio          | MP3       |
+
+    Examples: OUTPUTS:
+        | mensaje_error                          |
+        | Formato no válido. Use JPG o MP4.      |
+        | Formato no válido. Use JPG o MP4.      |
