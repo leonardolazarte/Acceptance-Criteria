@@ -8,7 +8,23 @@ Scenario: E1: Emergencia activada
     When lo confirma
     Then sus contactos seleccionados reciben una alerta inmediata con su ubicación.
 
+    Examples: INPUTS:
+        | acción_boton_pánico |
+        | Presionado          |
+    
+    Examples: OUTPUTS:
+        | alerta_enviada       |
+        | Si                   |
+
 Scenario: E2: Emergencia desactivada
     Given que un ciudadano activa el modo emergencia por error
     When lo cancela en menos de 10 segundos
     Then no se envía la alerta a los contactos.
+
+    Examples: INPUTS:
+        | acción_boton_pánico |
+        | Presionado          |
+
+    Examples: OUTPUTS:
+        | alerta_enviada       |
+        | No                   |
