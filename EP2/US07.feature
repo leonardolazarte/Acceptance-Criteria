@@ -8,7 +8,27 @@ Scenario: E1: Selección de categorías
     When selecciona solo “robos” y “acoso”
     Then  solo recibe alertas de esas categorías.
 
+    Examples: INPUTS:
+        | categorías_seleccionadas    |
+        | Robos, Acoso                |
+        | Vandalismo, Accidentes      |
+    
+    Examples: OUTPUTS:
+        | categorías_alertas_recibidas |
+        | Robos, Acoso                |
+        | Vandalismo, Accidentes      |
+
 Scenario: E2: Todas las categorías
     Given que un ciudadano no configura filtros
     When se publican incidentes
     Then recibe todas las alertas por defecto.
+
+    Examples: INPUTS:
+        | configuración_filtros |
+        | Ninguna               |
+        | Ninguna               |
+    
+    Examples: OUTPUTS:
+        | categorías_alertas_recibidas |
+        | Todas                  |
+        | Todas                  |
