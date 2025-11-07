@@ -8,7 +8,26 @@ Scenario: E1: Envío automático
     When alcanza cierto nivel de confiabilidad
     Then se envía automáticamente a las autoridades vinculadas.
 
+    Examples: INPUTS:
+        | nivel_confiabilidad |
+        | Alto                |
+        | Muy alto           |
+    
+    Examples: OUTPUTS:
+        | estado_envío_aut.    |
+        | Enviado a autoridades |
+
+
 Scenario: E2: Confirmación de recepción
     Given que el reporte es enviado a autoridades
     When se recibe correctamente
     Then el ciudadano recibe una notificación de confirmación.
+
+    Examples: INPUTS:
+        | estado_envío_reporte |
+        | Enviado              |
+        | Enviado              |
+    
+    Examples: OUTPUTS:
+        | notificación_recibida |
+        | Sí                    |
