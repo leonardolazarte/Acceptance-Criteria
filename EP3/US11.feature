@@ -8,7 +8,22 @@ Scenario: E1: Voto positivo
     When confirma que es verdadero
     Then su voto se suma al nivel de confiabilidad del reporte.
 
+    Examples: INPUTS:
+        | voto_confirmación |
+        | Positivo          |
+
+    Examples: OUTPUTS:
+        | aumento_confiabilidad |
+        | Sí                    |
+
 Scenario: E2: Voto negativo
     Given que un ciudadano lee un reporte
     When lo considera falso
     Then su voto resta credibilidad al mismo.
+
+    Examples: INPUTS:
+        | voto_confirmación |
+        | Negativo          |
+    Examples: OUTPUTS:
+        | disminución_confiabilidad |
+        | Sí                        |
