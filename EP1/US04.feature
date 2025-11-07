@@ -1,14 +1,32 @@
-Feature: US04 - Reportar de forma anónima
+Feature: US14 - Estadísticas semanales
     Como ciudadano
-    Quiero poder denunciar de forma anónima 
-    Para no sentirme en riesgo.
-    
-Scenario: E1: Reporte anónimo
-    Given que un ciudadano selecciona la opción “anónimo”
-    When publica un reporte
-    Then su identidad no se muestra a otros usuarios.
+    Quiero ver estadísticas semanales de mi barrio 
+    Para identificar si los delitos están aumentando.
 
-Scenario: E2: Seguimiento interno
-    Given que un reporte anónimo es publicado
-    When las autoridades lo consultan
-    Then pueden verlo sin conocer la identidad del autor, pero con un ID interno de referencia.
+Scenario: E1: Datos disponibles
+    Given que un ciudadano abre la sección estadísticas
+    When consulta la última semana
+    Then ve el número de incidentes agrupados por categoría.
+
+    Examples: INPUTS:
+        | semana_consultada |
+        | Semana 23        |
+        | Semana 24        |
+    
+    Examples: OUTPUTS:
+        | datos_estadísticos                |
+        | 15 robos, 5 accidentes, 3 vandalismos |
+
+Scenario: E2: Sin datos recientes
+    Given que un ciudadano consulta estadísticas
+    When no hubo incidentes en la semana
+    Then el sistema muestra “0 reportes registrados”.
+
+    Examples: INPUTS:
+        | semana_consultada |
+        | Semana 25        |
+        | Semana 26        |
+
+    Examples: OUTPUTS:
+        | mensaje_sistema                |
+        | 0 reportes registrados         |
